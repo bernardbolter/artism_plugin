@@ -3,7 +3,7 @@
 function artism_add_custom_metabox() {
   add_meta_box(
     'artism_meta',
-    'Artwork Medium',
+    'Artwork',
     'artism_meta_callback',
     'artwork'
   );
@@ -17,17 +17,28 @@ function artism_meta_callback( $post ) {
   ?>
     <div class="artism__row">
         <div class="artism__th">
-            <label for="artism-medium" class="artism__row--title">Artwork Medium</label>
+            <label for="artMedium" class="artism__row--title">Artwork Medium</label>
         </div>
         <div class="artism__td">
             <input type="text" name="artMedium" id="artMedium" value="<?php if ( ! empty ( $artism_stored_meta['artMedium'] ) ) echo esc_attr( $artism_stored_meta['artMedium'][0] ); ?>" />
         </div>
     </div>
     <div class="artism__row">
-        <div class="artism_th">
-            <span>Artwork Description</span>
+        <div class="artism__th">
+            <label for="artform" class="artism__row--title">Artwork Form</label>
         </div>
-      </div>
+        <div class="artism__td">
+            <input type="text" name="artform" id="artform" value="<?php if ( ! empty ( $artism_stored_meta['artform'] ) ) echo esc_attr( $artism_stored_meta['artform'][0] ); ?>" />
+        </div>
+    </div>
+    <div class="artism__row">
+        <div class="artism__th">
+            <label for="dateCreated" class="artism__row--title">Artwork Date Created</label>
+        </div>
+        <div class="artism__td">
+            <input type="text" class="artism__row--content datepicker" name="dateCreated" id="dateCreated" value="<?php if ( ! empty ( $artism_stored_meta['dateCreated'] ) ) echo esc_attr( $artism_stored_meta['dateCreated'][0] ); ?>" />
+        </div>
+    </div>
     <div class="artism__editor">
     <?php
 
@@ -57,6 +68,14 @@ function artism_meta_save( $post_id ) {
 
   if ( isset( $_POST['artMedium'] ) ) {
     update_post_meta($post_id, 'artMedium', sanitize_text_field($_POST['artMedium']) );
+  }
+
+  if ( isset( $_POST['artform'] ) ) {
+    update_post_meta($post_id, 'artform', sanitize_text_field($_POST['artform']) );
+  }
+
+  if ( isset( $_POST['dateCreated'] ) ) {
+    update_post_meta($post_id, 'dateCreated', sanitize_text_field($_POST['dateCreated']) );
   }
 }
 
