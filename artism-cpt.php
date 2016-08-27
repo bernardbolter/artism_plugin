@@ -51,7 +51,7 @@ function artism_register_post_type() {
     )
   );
 
-  register_post_type( 'artism', $args );
+  register_post_type( 'artwork', $args );
 }
 
 add_action( 'init', 'artism_register_post_type' );

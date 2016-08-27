@@ -5,7 +5,7 @@ function artism_add_custom_metabox() {
     'artism_meta',
     'Artwork Medium',
     'artism_meta_callback',
-    'artism'
+    'artwork'
   );
 }
 
