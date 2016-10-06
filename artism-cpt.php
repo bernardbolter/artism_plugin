@@ -46,6 +46,8 @@ function artism_register_post_type() {
         'pages'      => true,
         'feeds'      => true,
     ),
+    'show_in_rest'            => true,
+    'rest_controller_class'   => "WP_REST_Posts_Controller",
     'supports'             => array(
       'title'
     )

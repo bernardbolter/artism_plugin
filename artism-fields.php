@@ -15,45 +15,31 @@ function artism_meta_callback( $post ) {
   wp_nonce_field( basename( __FILE__ ), 'artism_artwork_nonce');
   $artism_stored_meta = get_post_meta( $post->ID );
   ?>
-    <div class="artism__row">
-        <div class="artism__th">
-            <label for="artMedium" class="artism__row--title">Artwork Medium</label>
-        </div>
-        <div class="artism__td">
-            <input type="text" name="artMedium" id="artMedium" value="<?php if ( ! empty ( $artism_stored_meta['artMedium'] ) ) echo esc_attr( $artism_stored_meta['artMedium'][0] ); ?>" />
-        </div>
+    <div class="artism__properties">
+      <p>Properties from <a href="https://schema.org/VisualArtwork" target="_blank">VisualArtwork</a></p>
+    </div>
+    <div class="artism__input">
+        <label for="artMedium" class="artism__input--title">Artwork Medium <span class="artism__input--property"> - property</span></label>
+        <input type="text" class="artism__input--field" name="artMedium" id="artMedium" value="<?php if ( ! empty ( $artism_stored_meta['artMedium'] ) ) echo esc_attr( $artism_stored_meta['artMedium'][0] ); ?>" />
+    </div>
+    <div class="artism__description">
+        <h3 class="artism__description--header">Expected Type: Integer or URL</h3>
+        <h4 class="artism__description--content">Description: The material used. (e.g. Oil, Watercolour, Acrylic, Linoprint, Marble, Cyanotype, Digital, Lithograph, DryPoint, Intaglio, Pastel, Woodcut, Pencil, Mixed Media, etc.) Supersedes material.</h4>
+    </div>
+    <div class="artism__input">
+        <label for="artform" class="artism__input--title">Artwork Form</label>
+        <input type="text" name="artform" id="artform" value="<?php if ( ! empty ( $artism_stored_meta['artform'] ) ) echo esc_attr( $artism_stored_meta['artform'][0] ); ?>" />
+    </div>
+    <div class="artism__description">
+        <h3 class="artism__description--header">Expected Type: Integer or Text</h3>
+        <h4 class="artism__description--content">Description: The material used. (e.g. Oil, Watercolour, Acrylic, Linoprint, Marble, Cyanotype, Digital, Lithograph, DryPoint, Intaglio, Pastel, Woodcut, Pencil, Mixed Media, etc.) Supersedes material.</h4>
     </div>
     <div class="artism__row">
-        <div class="artism__th">
-            <label for="artform" class="artism__row--title">Artwork Form</label>
-        </div>
-        <div class="artism__td">
-            <input type="text" name="artform" id="artform" value="<?php if ( ! empty ( $artism_stored_meta['artform'] ) ) echo esc_attr( $artism_stored_meta['artform'][0] ); ?>" />
-        </div>
+        <label for="dateCreated" class="artism__input--title">Artwork Date Created</label>
+        <input type="text" class="artism__row--content datepicker" name="dateCreated" id="dateCreated" value="<?php if ( ! empty ( $artism_stored_meta['dateCreated'] ) ) echo esc_attr( $artism_stored_meta['dateCreated'][0] ); ?>" />
     </div>
-    <div class="artism__row">
-        <div class="artism__th">
-            <label for="dateCreated" class="artism__row--title">Artwork Date Created</label>
-        </div>
-        <div class="artism__td">
-            <input type="text" class="artism__row--content datepicker" name="dateCreated" id="dateCreated" value="<?php if ( ! empty ( $artism_stored_meta['dateCreated'] ) ) echo esc_attr( $artism_stored_meta['dateCreated'][0] ); ?>" />
-        </div>
-    </div>
-    <div class="artism__editor">
-    <?php
 
-    $content = get_post_meta( $post->ID, 'artwork_description', true);
-    $editor = 'artwork_description';
-    $settings = array(
-      'textarea_rows' => 5,
-      'media_buttons' => false
-    );
-
-    wp_editor( $content, $editor, $settings);
-
-    ?>
-    </div>
-    <?php
+<?php
 }
 
 function artism_meta_save( $post_id ) {
@@ -80,5 +66,44 @@ function artism_meta_save( $post_id ) {
 }
 
 add_action( 'save_post', 'artism_meta_save');
+
+// REGISTER CUSTOM FIELDS WITH THE WORDPRESS API
+
+add_action( 'rest_api_init', 'artism_register_custom_fields');
+
+function artism_register_custom_fields() {
+  register_rest_field(
+    'artwork',
+    'artMedium',
+    array(
+        'get_callback' => 'artism_show_fields'
+    )
+  );
+  register_rest_field(
+    'artwork',
+    'artform',
+    array(
+        'get_callback' => 'artism_show_fields'
+    )
+  );
+  register_rest_field(
+    'artwork',
+    'dateCreated',
+    array(
+        'get_callback' => 'artism_show_fields'
+    )
+  );
+  register_rest_field(
+    'artwork',
+    'custom_image_data',
+    array(
+        'get_callback' => 'artism_show_fields'
+    )
+  );
+}
+
+function artism_show_fields($object, $field_name, $request) {
+  return get_post_meta($object['id'], $field_name, true);
+}
 
 ?>
