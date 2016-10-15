@@ -15,8 +15,9 @@ if ( ! defined( 'ABSPATH') ) {
 
 require_once ( plugin_dir_path(__FILE__) . 'artism-cpt.php');
 require_once ( plugin_dir_path(__FILE__) . 'artism-render-admin.php');
-require_once ( plugin_dir_path(__FILE__) . 'artism-fields.php');
+require_once ( plugin_dir_path(__FILE__) . 'artism-description.php');
 require_once ( plugin_dir_path(__FILE__) . 'artism-image-uploader.php');
+require_once ( plugin_dir_path(__FILE__) . 'artism-fields.php');
 
 function artism_admin_enqueue_scripts() {
     global $pagenow, $typenow;
@@ -25,7 +26,10 @@ function artism_admin_enqueue_scripts() {
       wp_enqueue_media();
       wp_enqueue_style( 'artism-admin', plugins_url( 'css/artism.css', __FILE__ ) );
       wp_enqueue_script( 'artism-js', plugins_url( 'js/artism.js', __FILE__ ), array( 'jquery', 'media-upload', 'jquery-ui-datepicker' ), '20160808' );
-      wp_localize_script( 'artism-js', 'customUploads', array( 'imageData' => get_post_meta( get_the_ID(), 'custom_image_data', true ) ) );
+      wp_localize_script( 'artism-js', 'artismImageUpload', array(
+         'primaryImageData' => get_post_meta( get_the_ID(), 'image', true),
+         'secondaryImageData' => get_post_meta( get_the_ID(), 'secondaryImage', true)
+         ) );
       wp_enqueue_style( 'artism-datepicker-style', 'http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.2/themes/smoothness/jquery-ui.css' );
     }
 }
