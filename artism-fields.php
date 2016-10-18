@@ -154,6 +154,13 @@ function artism_register_custom_fields() {
   );
   register_rest_field(
     'artwork',
+    'series',
+    array(
+        'get_callback' => 'artism_show_fields'
+    )
+  );
+  register_rest_field(
+    'artwork',
     'image',
     array(
         'get_callback' => 'artism_show_fields'
@@ -161,7 +168,133 @@ function artism_register_custom_fields() {
   );
   register_rest_field(
     'artwork',
+    'thumbnailUrl',
+    array(
+        'get_callback' => 'artism_show_fields'
+    )
+  );
+  register_rest_field(
+    'artwork',
+    'imageMedium',
+    array(
+        'get_callback' => 'artism_show_fields'
+    )
+  );
+  register_rest_field(
+    'artwork',
+    'imageLarge',
+    array(
+        'get_callback' => 'artism_show_fields'
+    )
+  );
+  register_rest_field(
+    'artwork',
+    'secondaryArtworkTitle',
+    array(
+        'get_callback' => 'artism_show_fields'
+    )
+  );
+  register_rest_field(
+    'artwork',
+    'secondaryArtMedium',
+    array(
+        'get_callback' => 'artism_show_fields'
+    )
+  );
+  register_rest_field(
+    'artwork',
+    'secondaryArtworkYear',
+    array(
+        'get_callback' => 'artism_show_fields'
+    )
+  );
+  register_rest_field(
+    'artwork',
+    'secondaryArtworkLink',
+    array(
+        'get_callback' => 'artism_show_fields'
+    )
+  );
+  register_rest_field(
+    'artwork',
     'secondaryImage',
+    array(
+        'get_callback' => 'artism_show_fields'
+    )
+  );
+  register_rest_field(
+    'artwork',
+    'secondaryThumbnailUrl',
+    array(
+        'get_callback' => 'artism_show_fields'
+    )
+  );
+  register_rest_field(
+    'artwork',
+    'secondaryImageMedium',
+    array(
+        'get_callback' => 'artism_show_fields'
+    )
+  );
+  register_rest_field(
+    'artwork',
+    'secondaryImageLarge',
+    array(
+        'get_callback' => 'artism_show_fields'
+    )
+  );
+  register_rest_field(
+    'artwork',
+    'tertiaryArtworkTitle',
+    array(
+        'get_callback' => 'artism_show_fields'
+    )
+  );
+  register_rest_field(
+    'artwork',
+    'tertiaryArtMedium',
+    array(
+        'get_callback' => 'artism_show_fields'
+    )
+  );
+  register_rest_field(
+    'artwork',
+    'tertiaryArtworkYear',
+    array(
+        'get_callback' => 'artism_show_fields'
+    )
+  );
+  register_rest_field(
+    'artwork',
+    'tertiaryArtworkLink',
+    array(
+        'get_callback' => 'artism_show_fields'
+    )
+  );
+  register_rest_field(
+    'artwork',
+    'tertiaryImage',
+    array(
+        'get_callback' => 'artism_show_fields'
+    )
+  );
+  register_rest_field(
+    'artwork',
+    'tertiaryThumbnailUrl',
+    array(
+        'get_callback' => 'artism_show_fields'
+    )
+  );
+  register_rest_field(
+    'artwork',
+    'tertiaryArtworkMedium',
+    array(
+        'get_callback' => 'artism_show_fields'
+    )
+  );
+  register_rest_field(
+    'artwork',
+    'tertiaryArtworkLarge',
     array(
         'get_callback' => 'artism_show_fields'
     )

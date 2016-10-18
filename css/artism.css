@@ -65,3 +65,54 @@
   font-size: 11px;
   margin: 3px 3px 10px;
 }
+
+/* Style for the Image Text */
+.artism__uploader--title {
+  font-size: 18px;
+  color: #333;
+}
+.artism__uploader--headline {
+  font-size: 12px;
+  color: #888;
+  max-width: 400px;
+  border-bottom: 1px solid #666;
+  padding-bottom: 4px;
+  margin: 0;
+}
+.artism__uploader--subheadline {
+  font-size: 10px;
+  color: #555;
+  max-width: 400px;
+  padding: 0;
+  margin: 5px 0;
+}
+
+/* Style for the buttons */
+
+.artism__button {
+	-moz-box-shadow:inset 0px 1px 0px 0px #ffffff;
+	-webkit-box-shadow:inset 0px 1px 0px 0px #ffffff;
+	box-shadow:inset 0px 1px 0px 0px #ffffff;
+	background-color:#ededed;
+	-moz-border-radius:6px;
+	-webkit-border-radius:6px;
+	border-radius:6px;
+	border:1px solid #dcdcdc;
+	display:inline-block;
+	cursor:pointer;
+	color:#777777;
+	font-family:Arial;
+	font-size:15px;
+	font-weight:normal;
+	padding:6px 24px;
+	text-decoration:none;
+	text-shadow:0px 1px 0px #ffffff;
+  margin: 5px 5px 5px 5px;
+}
+.artism__button:hover {
+	background-color:#dfdfdf;
+}
+.artism__button:active {
+	position:relative;
+	top:1px;
+}

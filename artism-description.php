@@ -266,6 +266,25 @@ function artism_description_callback( $post ) {
         <h4 class="artism__description--content">Description: A description of the item.</h4>
     </div>
 
+    <?php /* PROPERTIES FOR BERNARD BOLTER DOT COM */ ?>
+
+    <div class="artism__properties">
+      <h3>Properties for bernardbolter.com</h3>
+      <h5 class="artism__properties--subtext">These properties are specific to bernardbolter.com and not apart of the schema.</h5>
+    </div>
+
+    <?php /* SERIES */ ?>
+
+    <div class="artism__input">
+        <label for="series" class="artism__input--title">Series <span class="artism__input--property"> - property | series</span></label>
+        <input type="text" class="artism__input--field" name="series" id="series" value="<?php if ( ! empty ( $artism_stored_meta['series'] ) ) echo esc_attr( $artism_stored_meta['series'][0] ) ?>" />
+    </div>
+    <div class="artism__description">
+        <h3 class="artism__description--header">Expected Type: Text</h3>
+        <h4 class="artism__description--content">Description: Code for series declaration. <span class="artism__input--property">ach = A Colorful History | dcs = Digital City Series | acs = Art Collision Series | vls = Vanishing Landscape Series | ogp = OG Oil Paintings | per = Performance Art | wat = Watercolour Paintings | dra = Drawings | pho = Photography</span></h4>
+    </div>
+
+
 
 <?php
 }
@@ -362,6 +381,10 @@ function artism_description_meta_save( $post_id ) {
 
   if ( isset( $_POST['description'] ) ) {
     update_post_meta($post_id, 'description', sanitize_text_field($_POST['description']) );
+  }
+
+  if ( isset( $_POST['series'] ) ) {
+    update_post_meta($post_id, 'series', sanitize_text_field($_POST['series']) );
   }
 
 
