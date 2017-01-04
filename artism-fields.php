@@ -189,112 +189,112 @@ function artism_register_custom_fields() {
   );
   register_rest_field(
     'artwork',
-    'secondaryArtworkTitle',
+    'complementaryArtworkTitle',
     array(
         'get_callback' => 'artism_show_fields'
     )
   );
   register_rest_field(
     'artwork',
-    'secondaryArtMedium',
+    'complementaryArtMedium',
     array(
         'get_callback' => 'artism_show_fields'
     )
   );
   register_rest_field(
     'artwork',
-    'secondaryArtworkYear',
+    'complementaryArtworkYear',
     array(
         'get_callback' => 'artism_show_fields'
     )
   );
   register_rest_field(
     'artwork',
-    'secondaryArtworkLink',
+    'complementaryArtworkLink',
     array(
         'get_callback' => 'artism_show_fields'
     )
   );
   register_rest_field(
     'artwork',
-    'secondaryImage',
+    'complementaryImage',
     array(
         'get_callback' => 'artism_show_fields'
     )
   );
   register_rest_field(
     'artwork',
-    'secondaryThumbnailUrl',
+    'complementaryThumbnailUrl',
     array(
         'get_callback' => 'artism_show_fields'
     )
   );
   register_rest_field(
     'artwork',
-    'secondaryImageMedium',
+    'complementaryImageMedium',
     array(
         'get_callback' => 'artism_show_fields'
     )
   );
   register_rest_field(
     'artwork',
-    'secondaryImageLarge',
+    'complementaryImageLarge',
     array(
         'get_callback' => 'artism_show_fields'
     )
   );
   register_rest_field(
     'artwork',
-    'tertiaryArtworkTitle',
+    'secondComplementaryArtworkTitle',
     array(
         'get_callback' => 'artism_show_fields'
     )
   );
   register_rest_field(
     'artwork',
-    'tertiaryArtMedium',
+    'secondComplementaryArtMedium',
     array(
         'get_callback' => 'artism_show_fields'
     )
   );
   register_rest_field(
     'artwork',
-    'tertiaryArtworkYear',
+    'secondComplementaryArtworkYear',
     array(
         'get_callback' => 'artism_show_fields'
     )
   );
   register_rest_field(
     'artwork',
-    'tertiaryArtworkLink',
+    'secondComplementaryArtworkLink',
     array(
         'get_callback' => 'artism_show_fields'
     )
   );
   register_rest_field(
     'artwork',
-    'tertiaryImage',
+    'secondComplementaryImage',
     array(
         'get_callback' => 'artism_show_fields'
     )
   );
   register_rest_field(
     'artwork',
-    'tertiaryThumbnailUrl',
+    'secondComplementaryThumbnailUrl',
     array(
         'get_callback' => 'artism_show_fields'
     )
   );
   register_rest_field(
     'artwork',
-    'tertiaryArtworkMedium',
+    'secondComplementaryImageMedium',
     array(
         'get_callback' => 'artism_show_fields'
     )
   );
   register_rest_field(
     'artwork',
-    'tertiaryArtworkLarge',
+    'secondComplementaryImageLarge',
     array(
         'get_callback' => 'artism_show_fields'
     )

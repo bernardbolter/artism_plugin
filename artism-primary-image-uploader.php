@@ -58,17 +58,6 @@ function artism_save_images( $post_id ) {
         $primary_image_data = [];
       }
   }
-
-
-  if (isset( $_POST[ 'secondaryImage' ])) {
-      $secondary_image_data = json_decode( stripslashes( $_POST[ 'secondaryImage' ]));
-      if ( is_object( $secondary_image_data[0] ) ) {
-  			$secondary_image_data = (esc_url_raw( $secondary_image_data[0]->url ));
-        update_post_meta( $post_id, 'secondaryImage', $secondary_image_data );
-    	} else {
-        $secondary_image_data = [];
-      }
-  }
 }
 
 add_action( 'save_post', 'artism_save_images' );

@@ -79,7 +79,7 @@ function artism_description_callback( $post ) {
     <?php /* DEPTH */ ?>
 
     <div class="artism__input">
-        <label for="depth" class="artism__input--title">Height <span class="artism__input--property"> - property | depth</span></label>
+        <label for="depth" class="artism__input--title">Depth <span class="artism__input--property"> - property | depth</span></label>
         <input type="text" class="artism__input--field" name="depth" id="depth" value="<?php if ( ! empty ( $artism_stored_meta['depth'] ) ) echo esc_attr( $artism_stored_meta['depth'][0] ); ?>" />
     </div>
     <div class="artism__description">

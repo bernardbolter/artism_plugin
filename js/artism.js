@@ -7,20 +7,20 @@ jQuery(document).ready(function() {
     });
 
     var addButton = document.getElementById( 'primary-image-upload-button');
-    var addButtonSecond = document.getElementById( 'secondary-image-upload-button');
-    var addButtonThird = document.getElementById( 'tertiary-image-upload-button');
+    var addButtonComplementary = document.getElementById( 'complementary-image-upload-button');
+    var addButtonSecondComplementary = document.getElementById( 'second-complementary-image-upload-button');
 
     var deleteButton = document.getElementById( 'primary-image-delete-button');
-    var deleteButtonSecond = document.getElementById( 'secondary-image-delete-button');
-    var deleteButtonThird = document.getElementById( 'tertiary-image-delete-button');
+    var deleteButtonComplementary = document.getElementById( 'complementary-image-delete-button');
+    var deleteButtonSecondComplementary = document.getElementById( 'second-complementary-image-delete-button');
 
     var img = document.getElementById( 'primary-image-tag');
-    var imgSecond = document.getElementById( 'secondary-image-tag');
-    var imgThird = document.getElementById( 'tertiary-image-tag');
+    var imgComplementary = document.getElementById( 'complementary-image-tag');
+    var imgSecondComplementary = document.getElementById( 'second-complementary-image-tag');
 
     var hidden = document.getElementById( 'primary-image-hidden-field');
-    var hiddenSecond = document.getElementById( 'secondary-image-hidden-field');
-    var hiddenThird = document.getElementById( 'tertiary-image-hidden-field');
+    var hiddenComplementary = document.getElementById( 'complementary-image-hidden-field');
+    var hiddenSecondComplementary = document.getElementById( 'second-complementary-image-hidden-field');
 
     var primaryImageUploader = wp.media({
       title: 'Select a Primary Image',
@@ -29,15 +29,15 @@ jQuery(document).ready(function() {
       },
       multiple: 'false'
     });
-    var secondaryImageUploader = wp.media({
-      title: 'Select a Second Image',
+    var complementaryImageUploader = wp.media({
+      title: 'Select a Complementary Image',
       button: {
         text: 'Use this Image'
       },
       multiple: 'false'
     });
-    var tertiaryImageUploader = wp.media({
-      title: 'Select a Third Image',
+    var secondComplementaryImageUploader = wp.media({
+      title: 'Select a Second Complementary Image',
       button: {
         text: 'Use this Image'
       },
@@ -50,14 +50,14 @@ jQuery(document).ready(function() {
         }
     });
 
-    addButtonSecond.addEventListener( 'click', function() {
-        if ( secondaryImageUploader ) {
-          secondaryImageUploader.open();
+    addButtonComplementary.addEventListener( 'click', function() {
+        if ( complementaryImageUploader ) {
+          complementaryImageUploader.open();
         }
     });
-    addButtonThird.addEventListener( 'click', function() {
-        if ( tertiaryImageUploader ) {
-          tertiaryImageUploader.open();
+    addButtonSecondComplementary.addEventListener( 'click', function() {
+        if ( secondComplementaryImageUploader ) {
+          secondComplementaryImageUploader.open();
         }
     });
 
@@ -78,36 +78,36 @@ jQuery(document).ready(function() {
         toggleVisibility( 'ADD' );
     });
 
-    secondaryImageUploader.on( 'select', function() {
-        var attachmentSecond = secondaryImageUploader.state().get('selection').first().toJSON();
-        console.log(attachmentSecond);
-        imgSecond.setAttribute( 'src', attachmentSecond.url );
-        if (attachmentSecond.sizes.thumbnail == null) {
-          hiddenSecond.setAttribute( 'value', JSON.stringify( [{ id: attachmentSecond.id, url: attachmentSecond.url }]) );
-        } else if (attachmentSecond.sizes.medium == null) {
-          hiddenSecond.setAttribute( 'value', JSON.stringify( [{ id: attachmentSecond.id, url: attachmentSecond.url, thumbnailUrl: attachmentSecond.sizes.thumbnail.url }]) );
-        }  else if (attachmentSecond.sizes.large == null) {
-          hiddenSecond.setAttribute( 'value', JSON.stringify( [{ id: attachmentSecond.id, url: attachmentSecond.url, thumbnailUrl: attachmentSecond.sizes.thumbnail.url, mediumUrl: attachmentSecond.sizes.medium.url }]) );
+    complementaryImageUploader.on( 'select', function() {
+        var attachmentComplementary = complementaryImageUploader.state().get('selection').first().toJSON();
+        console.log(attachmentComplementary);
+        imgComplementary.setAttribute( 'src', attachmentComplementary.url );
+        if (attachmentComplementary.sizes.thumbnail == null) {
+          hiddenComplementary.setAttribute( 'value', JSON.stringify( [{ id: attachmentComplementary.id, url: attachmentComplementary.url }]) );
+        } else if (attachmentComplementary.sizes.medium == null) {
+          hiddenComplementary.setAttribute( 'value', JSON.stringify( [{ id: attachmentComplementary.id, url: attachmentComplementary.url, thumbnailUrl: attachmentComplementary.sizes.thumbnail.url }]) );
+        }  else if (attachmentComplementary.sizes.large == null) {
+          hiddenComplementary.setAttribute( 'value', JSON.stringify( [{ id: attachmentComplementary.id, url: attachmentComplementary.url, thumbnailUrl: attachmentComplementary.sizes.thumbnail.url, mediumUrl: attachmentComplementary.sizes.medium.url }]) );
         } else {
-          hiddenSecond.setAttribute( 'value', JSON.stringify( [{ id: attachmentSecond.id, url: attachmentSecond.url, thumbnailUrl: attachmentSecond.sizes.thumbnail.url, mediumUrl: attachmentSecond.sizes.medium.url, largeUrl: attachmentSecond.sizes.large.url }]) );
+          hiddenComplementary.setAttribute( 'value', JSON.stringify( [{ id: attachmentComplementary.id, url: attachmentComplementary.url, thumbnailUrl: attachmentComplementary.sizes.thumbnail.url, mediumUrl: attachmentComplementary.sizes.medium.url, largeUrl: attachmentComplementary.sizes.large.url }]) );
         }
-        toggleVisibilitySecond( 'ADD' );
+        toggleVisibilityComplementary( 'ADD' );
     });
 
-    tertiaryImageUploader.on( 'select', function() {
-        var attachmentThird = tertiaryImageUploader.state().get('selection').first().toJSON();
-        console.log(attachmentThird);
-        imgThird.setAttribute( 'src', attachmentThird.url );
-        if (attachmentThird.sizes.thumbnail == null) {
-          hiddenThird.setAttribute( 'value', JSON.stringify( [{ id: attachmentThird.id, url: attachmentThird.url }]) );
-        } else if (attachmentThird.sizes.medium == null) {
-          hiddenThird.setAttribute( 'value', JSON.stringify( [{ id: attachmentThird.id, url: attachmentThird.url, thumbnailUrl: attachmentThird.sizes.thumbnail.url }]) );
-        }  else if (attachmentThird.sizes.large == null) {
-          hiddenThird.setAttribute( 'value', JSON.stringify( [{ id: attachmentThird.id, url: attachmentThird.url, thumbnailUrl: attachmentThird.sizes.thumbnail.url, mediumUrl: attachmentThird.sizes.medium.url }]) );
+    secondComplementaryImageUploader.on( 'select', function() {
+        var attachmentSecondComplementary = secondComplementaryImageUploader.state().get('selection').first().toJSON();
+        console.log(attachmentSecondComplementary);
+        imgSecondComplementary.setAttribute( 'src', attachmentSecondComplementary.url );
+        if (attachmentSecondComplementary.sizes.thumbnail == null) {
+          hiddenSecondComplementary.setAttribute( 'value', JSON.stringify( [{ id: attachmentSecondComplementary.id, url: attachmentSecondComplementary.url }]) );
+        } else if (attachmentSecondComplementary.sizes.medium == null) {
+          hiddenSecondComplementary.setAttribute( 'value', JSON.stringify( [{ id: attachmentSecondComplementary.id, url: attachmentSecondComplementary.url, thumbnailUrl: attachmentSecondComplementary.sizes.thumbnail.url }]) );
+        }  else if (attachmentSecondComplementary.sizes.large == null) {
+          hiddenSecondComplementary.setAttribute( 'value', JSON.stringify( [{ id: attachmentSecondComplementary.id, url: attachmentSecondComplementary.url, thumbnailUrl: attachmentSecondComplementary.sizes.thumbnail.url, mediumUrl: attachmentSecondComplementary.sizes.medium.url }]) );
         } else {
-          hiddenThird.setAttribute( 'value', JSON.stringify( [{ id: attachmentThird.id, url: attachmentThird.url, thumbnailUrl: attachmentThird.sizes.thumbnail.url, mediumUrl: attachmentThird.sizes.medium.url, largeUrl: attachmentThird.sizes.large.url }]) );
+          hiddenSecondComplementary.setAttribute( 'value', JSON.stringify( [{ id: attachmentSecondComplementary.id, url: attachmentSecondComplementary.url, thumbnailUrl: attachmentSecondComplementary.sizes.thumbnail.url, mediumUrl: attachmentSecondComplementary.sizes.medium.url, largeUrl: attachmentSecondComplementary.sizes.large.url }]) );
         }
-        toggleVisibilityThird( 'ADD' );
+        toggleVisibilitySecondComplementary( 'ADD' );
     });
 
     deleteButton.addEventListener( 'click', function() {
@@ -116,16 +116,16 @@ jQuery(document).ready(function() {
         toggleVisibility( 'DELETE' );
     });
 
-    deleteButtonSecond.addEventListener( 'click', function() {
-        imgSecond.removeAttribute( 'src' );
-        hiddenSecond.removeAttribute( 'value' );
-        toggleVisibilitySecond( 'DELETE' );
+    deleteButtonComplementary.addEventListener( 'click', function() {
+        imgComplementary.removeAttribute( 'src' );
+        hiddenComplementary.removeAttribute( 'value' );
+        toggleVisibilityComplementary( 'DELETE' );
     });
 
-    deleteButtonThird.addEventListener( 'click', function() {
-        imgThird.removeAttribute( 'src' );
-        hiddenThird.removeAttribute( 'value' );
-        toggleVisibilityThird( 'DELETE' );
+    deleteButtonSecondComplementary.addEventListener( 'click', function() {
+        imgSecondComplementary.removeAttribute( 'src' );
+        hiddenSecondComplementary.removeAttribute( 'value' );
+        toggleVisibilitySecondComplementary( 'DELETE' );
     });
 
     var toggleVisibility = function( action ) {
@@ -142,31 +142,31 @@ jQuery(document).ready(function() {
         }
     };
 
-    var toggleVisibilitySecond = function( action ) {
+    var toggleVisibilityComplementary = function( action ) {
         if ( 'ADD' === action ) {
-            addButtonSecond.style.display = 'none';
-            deleteButtonSecond.style.display = '';
-            imgSecond.setAttribute( 'style', 'max-width: 400px; width: 100%' );
+            addButtonComplementary.style.display = 'none';
+            deleteButtonComplementary.style.display = '';
+            imgComplementary.setAttribute( 'style', 'max-width: 400px; width: 100%' );
         }
 
         if ( 'DELETE' === action ) {
-            addButtonSecond.style.display = '';
-            deleteButtonSecond.style.display = 'none';
-            imgSecond.removeAttribute('style');
+            addButtonComplementary.style.display = '';
+            deleteButtonComplementary.style.display = 'none';
+            imgComplementary.removeAttribute('style');
         }
     };
 
-    var toggleVisibilityThird = function( action ) {
+    var toggleVisibilitySecondComplementary = function( action ) {
         if ( 'ADD' === action ) {
-            addButtonThird.style.display = 'none';
-            deleteButtonThird.style.display = '';
-            imgThird.setAttribute( 'style', 'max-width: 400px; width: 100%' );
+            addButtonSecondComplementary.style.display = 'none';
+            deleteButtonSecondComplementary.style.display = '';
+            imgSecondComplementary.setAttribute( 'style', 'max-width: 400px; width: 100%' );
         }
 
         if ( 'DELETE' === action ) {
-            addButtonThird.style.display = '';
-            deleteButtonThird.style.display = 'none';
-            imgThird.removeAttribute('style');
+            addButtonSecondComplementary.style.display = '';
+            deleteButtonSecondComplementary.style.display = 'none';
+            imgSecondComplementary.removeAttribute('style');
         }
     };
 
@@ -181,24 +181,22 @@ jQuery(document).ready(function() {
   });
 
     window.addEventListener( 'DOMContentLoaded', function() {
-        if ( "" === artismImageUpload.secondaryImageData || 0 === artismImageUpload.secondaryImageData.length) {
-          toggleVisibilitySecond( 'DELETE' );
+        if ( "" === artismImageUpload.complementaryImageData || 0 === artismImageUpload.complementaryImageData.length) {
+          toggleVisibilityComplementary( 'DELETE' );
       } else {
-          imgSecond.setAttribute( 'src', artismImageUpload.secondaryImageData );
-          hiddenSecond.setAttribute( 'value', JSON.stringify([ artismImageUpload.secondaryImageData ]) );
-          toggleVisibilitySecond( 'ADD' );
+          imgComplementary.setAttribute( 'src', artismImageUpload.complementaryImageData );
+          hiddenComplementary.setAttribute( 'value', JSON.stringify([ artismImageUpload.complementaryImageData ]) );
+          toggleVisibilityComplementary( 'ADD' );
       }
     });
 
     window.addEventListener( 'DOMContentLoaded', function() {
-        if ( "" === artismImageUpload.tertiaryImageData || 0 === artismImageUpload.tertiaryImageData.length) {
-          toggleVisibilityThird( 'DELETE' );
+        if ( "" === artismImageUpload.secondComplementaryImageData || 0 === artismImageUpload.secondComplementaryImageData.length) {
+          toggleVisibilitySecondComplementary( 'DELETE' );
       } else {
-          imgThird.setAttribute( 'src', artismImageUpload.tertiaryImageData );
-          hiddenThird.setAttribute( 'value', JSON.stringify([ artismImageUpload.tertiaryImageData ]) );
-          toggleVisibilityThird( 'ADD' );
+          imgSecondComplementary.setAttribute( 'src', artismImageUpload.secondComplementaryImageData );
+          hiddenSecondComplementary.setAttribute( 'value', JSON.stringify([ artismImageUpload.secondComplementaryImageData ]) );
+          toggleVisibilitySecondComplementary( 'ADD' );
       }
     });
-
-
 });
