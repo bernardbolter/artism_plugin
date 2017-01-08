@@ -41,7 +41,7 @@ function artism_register_post_type() {
     'map_meta_cap'        => true,
     // 'capabilities' => array(),
     'rewrite'             => array(
-        'slug'       => 'artwork',
+        'slug'       => 'artism',
         'with_front' => true,
         'pages'      => true,
         'feeds'      => true,
@@ -53,7 +53,7 @@ function artism_register_post_type() {
     )
   );
 
-  register_post_type( 'artwork', $args );
+  register_post_type( 'artism', $args );
 }
 
 add_action( 'init', 'artism_register_post_type' );

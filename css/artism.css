@@ -1,5 +1,9 @@
 /* Style for the properites title */
 
+.artism-artwork-index {
+  background-color: yellow;
+}
+
 .artism__propeties {
   width: 100%;
   margin: 3px 0;

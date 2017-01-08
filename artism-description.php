@@ -5,7 +5,7 @@ function artism_description_metaboxs() {
     'artism-description',
     'Artwork Information',
     'artism_description_callback',
-    'artwork',
+    'artism',
     'advanced'
   );
 }
@@ -85,6 +85,17 @@ function artism_description_callback( $post ) {
     <div class="artism__description">
         <h3 class="artism__description--header">Expected Type: Distance or QuantitativeValue </h3>
         <h4 class="artism__description--content">Description: The depth of the item.</h4>
+    </div>
+
+    <?php /* EDITION */ ?>
+
+    <div class="artism__input">
+        <label for="artEdition" class="artism__input--title">Edition <span class="artism__input--property"> - property | artEdition</span></label>
+        <input type="text" class="artism__input--field" name="artEdition" id="artEdition" value="<?php if ( ! empty ( $artism_stored_meta['artEdition'] ) ) echo esc_attr( $artism_stored_meta['artEdition'][0] ); ?>" />
+    </div>
+    <div class="artism__description">
+        <h3 class="artism__description--header">Expected Type: Integer or Text</h3>
+        <h4 class="artism__description--content">Description: The number of copies when multiple copies of a piece of artwork are produced - e.g. for a limited edition of 20 prints, 'artEdition' refers to the total number of copies (in this example "20").</h4>
     </div>
 
     <?php /* CREATIVE WORK */ ?>
@@ -321,6 +332,10 @@ function artism_description_meta_save( $post_id ) {
 
   if ( isset( $_POST['depth'] ) ) {
     update_post_meta($post_id, 'depth', sanitize_text_field($_POST['depth']) );
+  }
+
+  if ( isset( $_POST['artEdition'] ) ) {
+    update_post_meta($post_id, 'artEdition', sanitize_text_field($_POST['artEdition']) );
   }
 
   if ( isset( $_POST['headline'] ) ) {

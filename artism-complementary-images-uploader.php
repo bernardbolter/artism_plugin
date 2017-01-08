@@ -5,7 +5,7 @@ function artism_complementary_images_metaboxes() {
       'artism-complementary-images',
       'Complementary Artwork Image Uploader',
       'artism_complementary_images_callback',
-      'artwork',
+      'artism',
       'side',
       'low'
     );

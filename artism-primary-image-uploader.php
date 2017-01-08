@@ -5,7 +5,7 @@ function artism_images_metaboxes() {
       'artism-images',
       'Primary Artwork Image Uploader',
       'artism_images_uploader_callback',
-      'artwork',
+      'artism',
       'side',
       'high'
     );
@@ -46,6 +46,8 @@ function artism_save_images( $post_id ) {
   if (isset( $_POST[ 'image' ])) {
       $primary_image_data = json_decode( stripslashes( $_POST[ 'image' ]));
       if ( is_object( $primary_image_data[0] ) ) {
+      $attachment_id = ($primary_image_data[0]->id);
+      update_post_meta( $post_id, '_thumbnail_id', $attachment_id);
   		$image_data = (esc_url_raw( $primary_image_data[0]->url ));
       update_post_meta( $post_id, 'image', $image_data );
       $thumbnail_image_data = (esc_url_raw( $primary_image_data[0]->thumbnailUrl ));
